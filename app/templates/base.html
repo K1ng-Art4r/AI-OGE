@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI OGE</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+
+    <div class="page-shell">
+        <div class="container">
+            <header class="header">
+                <div class="topbar">
+                    <div class="brand">
+                        <div class="brand-mark">AI</div>
+                        <div class="brand-copy">
+                            <h1>AI OGE</h1>
+                            <p class="subtitle">Тренажёр сочинений ОГЭ по русскому языку</p>
+                        </div>
+                    </div>
+
+                    {% if current_user %}
+                    <div class="user-panel">
+                        <div class="user-panel-meta">
+                            <div class="user-panel-label">Аккаунт</div>
+                            <div class="user-panel-name">{{ current_user.nickname }}</div>
+                        </div>
+                        <a href="/logout" class="button secondary small">Выйти</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </header>
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
