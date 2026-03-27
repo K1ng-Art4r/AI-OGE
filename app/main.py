@@ -3,7 +3,6 @@ import hmac
 import os
 import random
 import re
-from functools import wraps
 from typing import Optional
 
 from fastapi import Depends, FastAPI, Form, Request
@@ -176,11 +175,13 @@ def login(
     password: str = Form(...),
     session: Session = Depends(get_session),
 ):
+    login_value = login_value.strip()
+
     user = session.exec(
         select(User).where(
             or_(
-                User.email == login_value.strip(),
-                User.nickname == login_value.strip(),
+                User.email == login_value,
+                User.nickname == login_value,
             )
         )
     ).first()
